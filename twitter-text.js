@@ -209,7 +209,7 @@ if (typeof twttr === "undefined" || twttr === null) {
   // A hashtag must contain characters, numbers and underscores, but not all numbers.
   twttr.txt.regexen.hashSigns = /[#＃]/;
   twttr.txt.regexen.hashtagAlpha = regexSupplant(/[a-z_#{latinAccentChars}#{nonLatinHashtagChars}]/i);
-  twttr.txt.regexen.hashtagAlphaNumeric = regexSupplant(/[a-z0-9_#{latinAccentChars}#{nonLatinHashtagChars}]/i);
+  twttr.txt.regexen.hashtagAlphaNumeric = regexSupplant(/[a-z0-9_#\-{latinAccentChars}#{nonLatinHashtagChars}]/i);
   twttr.txt.regexen.endHashtagMatch = regexSupplant(/^(?:#{hashSigns}|:\/\/)/);
   twttr.txt.regexen.hashtagBoundary = regexSupplant(/(?:^|$|[^&a-z0-9_#{latinAccentChars}#{nonLatinHashtagChars}])/);
   twttr.txt.regexen.validHashtag = regexSupplant(/(#{hashtagBoundary})(#{hashSigns})(#{hashtagAlphaNumeric}*#{hashtagAlpha}#{hashtagAlphaNumeric}*)/gi);
@@ -220,10 +220,10 @@ if (typeof twttr === "undefined" || twttr === null) {
   twttr.txt.regexen.validMentionOrList = regexSupplant(
     '(#{validMentionPrecedingChars})' +  // $1: Preceding character
     '(#{atSigns})' +                     // $2: At mark
-    '([a-zA-Z0-9_]{1,20})' +             // $3: Screen name
-    '(\/[a-zA-Z][a-zA-Z0-9_\-]{0,24})?'  // $4: List (optional)
+    '([a-zA-Z0-9_\-]{1,20})' +             // $3: Screen name
+    '(\/[a-zA-Z][a-zA-Z0-9_]{0,24})?'  // $4: List (optional)
   , 'g');
-  twttr.txt.regexen.validReply = regexSupplant(/^(?:#{spaces})*#{atSigns}([a-zA-Z0-9_]{1,20})/);
+  twttr.txt.regexen.validReply = regexSupplant(/^(?:#{spaces})*#{atSigns}([a-zA-Z0-9_\-]{1,20})/);
   twttr.txt.regexen.endMentionMatch = regexSupplant(/^(?:#{atSigns}|[#{latinAccentChars}]|:\/\/)/);
 
   // URL related regex collection
